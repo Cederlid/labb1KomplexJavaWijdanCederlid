@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="players")
+@Table(name = "players")
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +19,7 @@ public class Player {
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<GameResult> results = new ArrayList<>();
 
-    public Player(){
+    public Player() {
     }
 
     public List<GameResult> getResults() {
@@ -30,24 +30,24 @@ public class Player {
         this.results = results;
     }
 
-    public Player(String name){
+    public Player(String name) {
         this.name = name;
     }
 
-    public void addResult(int guesses, LocalDateTime time){
-        results.add(new GameResult(guesses,time));
+    public void addResult(int guesses, LocalDateTime time) {
+        results.add(new GameResult(guesses, time));
     }
 
     public String getName() {
         return name;
     }
 
-    public double getAverageScore(){
-        if (results.isEmpty()){
+    public double getAverageScore() {
+        if (results.isEmpty()) {
             return 0;
         }
         int totalScore = results.stream().mapToInt(GameResult::getScore).sum();
-        return (double) totalScore/ results.size();
+        return (double) totalScore / results.size();
     }
 
 

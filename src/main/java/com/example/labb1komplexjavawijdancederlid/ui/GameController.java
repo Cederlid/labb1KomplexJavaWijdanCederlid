@@ -16,7 +16,6 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
-
     @PostMapping("/start")
     public String login(@RequestParam String name, Model m){
         gameService.login(name);
